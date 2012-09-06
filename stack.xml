@@ -1,0 +1,16 @@
+<stack>
+  <description brief="BOSCH image processing tools">Contains tools for image processing</description>
+  <author>Christian Bersch (Maintained by Benjamin Pitzer)</author>
+  <license>BSD,GPL</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/bosch_image_proc</url>
+  <depend stack="bosch_3rdparty" /> <!-- vcglib -->
+  <depend stack="common_msgs" /> <!-- sensor_msgs -->
+  <depend stack="geometry" /> <!-- tf -->
+  <depend stack="image_common" /> <!-- image_transport -->
+  <depend stack="robot_model" /> <!-- urdf -->
+  <depend stack="ros" />
+  <depend stack="ros_comm" /> <!-- rospy, roscpp, message_filters -->
+  <depend stack="vision_opencv" /> <!-- image_geometry, opencv2, cv_bridge -->
+
+</stack>

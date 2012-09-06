@@ -1,0 +1,16 @@
+<package>
+  <description brief="pr2_camera_self_filter">
+
+     pr2_camera_self_filter
+
+  </description>
+  <author>Christian Bersch (Maintained by Benjamin Pitzer)</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/pr2_camera_self_filter</url>
+  <depend package="rospy"/>
+  <depend package="camera_self_filter"/>
+
+</package>
+
+
