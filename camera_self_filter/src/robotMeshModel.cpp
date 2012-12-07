@@ -200,6 +200,8 @@ void RobotMeshModel::paintRobot(){
     // TODO: Make this check for a list provided from a file from the parameter server
     if (links_with_meshes[i]->name == "base_link" ||
         links_with_meshes[i]->name == "torso_lift_link" ||
+        links_with_meshes[i]->name == "head_pan_link" ||
+        links_with_meshes[i]->name == "head_tilt_link" ||
         links_with_meshes[i]->name == "laser_tilt_mount_link" ||
         links_with_meshes[i]->name == "bl_caster_l_wheel_link" ||
         links_with_meshes[i]->name == "bl_caster_r_wheel_link" ||
