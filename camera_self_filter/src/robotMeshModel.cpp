@@ -187,8 +187,6 @@ void RobotMeshModel::updateRobotLinks(const ros::Time time_stamp){
 
 
 void RobotMeshModel::paintRobot(){
-
-
   // draw the configuration of the robot links as  specified in robotLinks_
   float d=1.0f; ///mesh.bbox.Diag();
   vcg::glScale(d);
@@ -199,9 +197,27 @@ void RobotMeshModel::paintRobot(){
     boost::shared_ptr<vcg::GlTrimesh<CMeshO> > wrapper_ptr  = mesh_wrappers[links_with_meshes[i]->name];
 
     btScalar glTf[16];
+    // TODO: Make this check for a list provided from a file from the parameter server
+    if (links_with_meshes[i]->name == "base_link" ||
+        links_with_meshes[i]->name == "torso_lift_link" ||
+        links_with_meshes[i]->name == "laser_tilt_mount_link" ||
+        links_with_meshes[i]->name == "bl_caster_l_wheel_link" ||
+        links_with_meshes[i]->name == "bl_caster_r_wheel_link" ||
+        links_with_meshes[i]->name == "bl_caster_rotation_link" ||
+        links_with_meshes[i]->name == "br_caster_l_wheel_link" ||
+        links_with_meshes[i]->name == "br_caster_r_wheel_link" ||
+        links_with_meshes[i]->name == "br_caster_rotation_link" ||
+        links_with_meshes[i]->name == "fl_caster_l_wheel_link" ||
+        links_with_meshes[i]->name == "fl_caster_r_wheel_link" ||
+        links_with_meshes[i]->name == "fl_caster_rotation_link" ||
+        links_with_meshes[i]->name == "fr_caster_l_wheel_link" ||
+        links_with_meshes[i]->name == "fr_caster_r_wheel_link" ||
+        links_with_meshes[i]->name == "fr_caster_rotation_link")
+    {
+      continue;
+    }
+    // ROS_INFO_STREAM("Painting link: " << links_with_meshes[i]->name);
     robotLinks_[links_with_meshes[i]->name].getOpenGLMatrix(glTf);
-
-
 
     glPushMatrix();
 
@@ -211,10 +227,6 @@ void RobotMeshModel::paintRobot(){
 
     glPopMatrix();
   }
-
-
-
-
 }
 
 void RobotMeshModel::setCameraInfo(sensor_msgs::CameraInfoConstPtr cam_info){
