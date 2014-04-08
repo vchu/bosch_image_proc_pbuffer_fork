@@ -90,10 +90,17 @@ RobotMeshModel::RobotMeshModel():nh_priv_("~"){
       if (filename.substr(filename.size() - 4 , 4) == ".dae")
         filename.replace(filename.size() - 4 , 4, ".stl");
       ROS_INFO("adding link %d %s",i,links[i]->name.c_str());
-      filename.erase(0,25);
+      //filename.erase(0,25);
+      filename.erase(0,29); //Not sure who put this hack in...but HACK 
+      
+      //ROS_INFO("filename:%s", filename.c_str());
       filename = description_path + filename;
 
       boost::shared_ptr<CMeshO> mesh_ptr(new CMeshO);
+
+      //ROS_INFO("description_path:%s", description_path.c_str());
+      //ROS_INFO("filename:%s", filename.c_str());
+
 
       if(vcg::tri::io::ImporterSTL<CMeshO>::Open(*mesh_ptr,filename.c_str())){
         ROS_ERROR("could not load mesh %s", filename.c_str());

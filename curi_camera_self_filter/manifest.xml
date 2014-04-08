@@ -1,0 +1,16 @@
+<package>
+  <description brief="curi_camera_self_filter">
+
+     curi_camera_self_filter
+
+  </description>
+  <author>Vivian Chu</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/curi_camera_self_filter</url>
+  <depend package="rospy"/>
+  <depend package="camera_self_filter"/>
+
+</package>
+
+
