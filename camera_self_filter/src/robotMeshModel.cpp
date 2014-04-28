@@ -180,7 +180,8 @@ void RobotMeshModel::updateRobotLinks(const ros::Time time_stamp){
     for (int i=0; i < links_with_meshes.size(); ++i){
       if (!tf_.waitForTransform(links_with_meshes[i]->name, modelframe_, current_time_stamp_, ros::Duration(0.5))){
         ROS_ERROR("could not get transform from %s to %s", links_with_meshes[i]->name.c_str(),modelframe_.c_str() );
-        continue;
+        //continue;
+        return;
       }
       tf_.lookupTransform( modelframe_, links_with_meshes[i]->name, current_time_stamp_, tf);
 
@@ -282,6 +283,8 @@ void RobotMeshModel::setCamera(){
 
 bool RobotMeshModel::setCameraPose(){
 
+  // sleep?
+  //ros::Duration(5.0).sleep();
 
   //set camera pose relative to robot links
   if (!tf_.waitForTransform(modelframe_, cameraframe_, current_time_stamp_, ros::Duration(0.5))){

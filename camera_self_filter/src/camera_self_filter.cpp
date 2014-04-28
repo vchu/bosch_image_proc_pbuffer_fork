@@ -182,6 +182,17 @@ void mask_cb(const sensor_msgs::CameraInfoConstPtr& msg_ptr){
     calc_and_publish_BWMask(msg_ptr->header.stamp, msg_ptr->header.frame_id);
 }
 
+// For camera topic callback rather than the camera info topic
+void test_mask_cb(const sensor_msgs::ImageConstPtr& msg_ptr){
+    //ROS_INFO_STREAM(msg_ptr->header.stamp);
+    //ROS_INFO_STREAM(ros::Time::now());
+    if ((ros::Time::now()-msg_ptr->header.stamp) > ros::Duration(10.0)){
+        ROS_INFO_STREAM("SKIPPING FIRST BECAUSE OF TIME");
+    } else {
+        calc_and_publish_BWMask(msg_ptr->header.stamp, msg_ptr->header.frame_id);
+    }
+}
+
 int main(int argc, char **argv)
 {
 #ifdef USE_GLUT_RENDERING
@@ -335,7 +346,10 @@ int main(int argc, char **argv)
     }
     else
     {
-        camerea_info_sub = nh.subscribe(camera_info_topic, 10, mask_cb);
+        // Change to listen to camera topic to time stamps because gazebo
+        // simulation doesn't update the camera info topic time stamp
+        //camerea_info_sub = nh.subscribe(camera_info_topic, 10, mask_cb);
+        camerea_info_sub = nh.subscribe(camera_topic, 10, test_mask_cb);
     }
 
 
